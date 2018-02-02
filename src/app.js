@@ -36,12 +36,14 @@ weatherAPI().then(showData).catch(e => alert(e));
 
 function showData( data ) {
   data.forEach((item) => {    
+    console.log('INSIDE!');
   output.innerHTML = item.main.temp;
 });
 }
 
 cityQuery.addEventListener('change', function(){
-  findCityOnMap(this.value, 'Pl', map);
+  findCityOnMap(this.value, 'Pl', map);  
+  weatherAPI(map.center.lat, map.center.lng).catch(e => alert(e.errorMessage));
 })
 
 // select.addEventListener('change', function () {

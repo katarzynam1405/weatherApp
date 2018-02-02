@@ -11,6 +11,7 @@ export function showOnMap(latitude, longitude, zoom, map) {
 
 export function findCityOnMap(city, countryCode, myMap){
 	var address = city ;//+ ', ' + countryCode;
+  var myLatLng;
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode({
     'address': address
@@ -19,11 +20,12 @@ export function findCityOnMap(city, countryCode, myMap){
       var Lat = results[0].geometry.location.lat();
       var Lng = results[0].geometry.location.lng();
       console.log('Lat: ' + Lat + ' Lng: ' + Lng);
-      var myLatLng = {lat: Lat, lng: Lng};
+      myLatLng = {lat: Lat, lng: Lng};
       myMap.setZoom(13);
       myMap.setCenter(myLatLng);
     } else {
       alert("Something got wrong " + status);
     }
   });
+  return myLatLng;
 }
