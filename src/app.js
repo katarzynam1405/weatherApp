@@ -1,11 +1,23 @@
 import weatherAPI from './API/weatherAPI';
 import geolocation from './geolocation/geolocation';
-var buttonIcon = document.querySelector('button.button.icon');
+import {showOnMap, findCityOnMap} from './API/googleMapAPI';
+
+var GoogleMapsLoader = require('google-maps');
+var map; 
+GoogleMapsLoader.load(function(google) {
+  var myLatLng = {lat: 52.158742, lng: 18.120850};
+  map = new google.maps.Map(document.querySelector('#googleMap'), {center: myLatLng, zoom: 6});
+});
+GoogleMapsLoader.KEY = 'AIzaSyDUrcoLs6wrba-vb9YGlEeItYXsJ_8S5FA';
+
+var buttonIcon = document.querySelector('#btnGetLoc');
 var select = document.querySelector('#citys');
+var cityQuery = document.querySelector('#searchCity');
 var output = document.querySelector('.output');
 
 function onGeolocationSuccess(position) {
     console.log(position.coords.latitude, position.coords.longitude);
+    showOnMap(position.coords.latitude, position.coords.longitude, 13, map);
     weatherAPI(position.coords.latitude, position.coords.longitude).catch(e => alert(e.errorMessage));
 }
 
@@ -23,14 +35,22 @@ function onClickHandler() {
 weatherAPI().then(showData).catch(e => alert(e));
 
 function showData( data ) {
-  data.forEach((item) => {
+  data.forEach((item) => {    
+    console.log('INSIDE!');
   output.innerHTML = item.main.temp;
 });
 }
 
-select.addEventListener('change', function () {
-    var lat = this.options[this.selectedIndex].getAttribute('data-lat');
-    var long = this.options[this.selectedIndex].getAttribute('data-long');
-    console.log(lat, long);
-    weatherAPI(lat, long);
-  })
+cityQuery.addEventListener('change', function(){
+  findCityOnMap(this.value, 'Pl', map);  
+  weatherAPI(map.center.lat, map.center.lng).catch(e => alert(e.errorMessage));
+})
+
+// select.addEventListener('change', function () {
+//     var lat = this.options[this.selectedIndex].getAttribute('data-lat');
+//     var long = this.options[this.selectedIndex].getAttribute('data-long');
+//     console.log(map);
+//     showOnMap(lat, long, 10, map);
+//     weatherAPI(lat, long);
+//     // findCityOnMap('Legnica', 'Pl', map);
+// })

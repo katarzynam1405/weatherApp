@@ -11,3 +11,9 @@ html, body{
 .gm-style-iw {
   text-align: center;
 }
+#root{
+	padding-top: 10px;
+}
+.mainPart{
+	padding-top: 10px;
+}
