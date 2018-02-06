@@ -24,7 +24,7 @@ export function findCityOnMap(city, countryCode, myMap){
       myMap.setZoom(13);
       myMap.setCenter(myLatLng);
     } else {
-      alert("Something got wrong " + status);
+      alert("Something go wrong " + status);
     }
   });
   return myLatLng;
