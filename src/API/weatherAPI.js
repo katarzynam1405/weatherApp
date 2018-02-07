@@ -9,6 +9,7 @@ export default function weatherAPI(lat, long) {
                 return response.json();
             })
             .then(function(data) {
+              console.log(data.forecast.simpleforecast);
               return data.forecast.simpleforecast;
             })
           );
