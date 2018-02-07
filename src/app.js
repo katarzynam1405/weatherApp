@@ -35,7 +35,7 @@ function onClickHandler() {
 
 cityQuery.addEventListener('change', function(){
   findCityOnMap(this.value, 'Pl', map);
-  weatherAPI(map.center.lat, map.center.lng).then(renderOutput).catch(e => alert(e.errorMessage));
+  weatherAPI(map.center.lat(), map.center.lng()).then(renderOutput).catch(e => alert(e.errorMessage));
 });
 
 renderOutput(data);
