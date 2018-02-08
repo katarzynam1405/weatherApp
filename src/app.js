@@ -1,4 +1,6 @@
+import newsAPI from './API/newsAPI';
 import weatherAPI from './API/weatherAPI';
+import renderNews from './renderOutput/renderNews';
 import geolocation from './geolocation/geolocation';
 import renderOutput from './renderOutput/renderOutput';
 import {showOnMap, findCityOnMap} from './API/googleMapAPI';
@@ -19,7 +21,7 @@ var output = document.querySelector('.output');
 
 function onGeolocationSuccess(position) {
     showOnMap(position.coords.latitude, position.coords.longitude, 13, map);
-    weatherAPI(position.coords.latitude, position.coords.longitude).then(renderOutput).catch(e => alert(e.errorMessage));
+    weatherAPI(position.coords.latitude, position.coords.longitude).then(renderOutput).then(newsAPI().then(renderNews)).catch(e => alert(e.errorMessage));
 }
 
 function onGeolocationError(positionError) {
@@ -35,7 +37,8 @@ function onClickHandler() {
 
 cityQuery.addEventListener('change', function(){
   findCityOnMap(this.value, 'Pl', map);
-  weatherAPI(map.center.lat(), map.center.lng()).then(renderOutput).catch(e => alert(e.errorMessage));
+  weatherAPI(map.center.lat(), map.center.lng()).then(renderOutput).then(newsAPI().then(renderNews)).catch(e => alert(e.errorMessage));
 });
 
 renderOutput(data);
+renderNews(data)
