@@ -1,5 +1,5 @@
 export default function renderOutput(data) {
-  var output = document.body.querySelector('.output');
+  var output = document.body.querySelector('.weather-output');
   output.innerHTML = '';
   data.forecastday.forEach((item) => {
     console.log(item);
@@ -13,16 +13,18 @@ export default function renderOutput(data) {
     condition.classList.add('weather-condition');
     date.classList.add('weather-date');
     temp.classList.add('weather-temp');
+    icon.classList.add('weather-icon');
+    snow.classList.add('weather-snow');
     condition.innerHTML += item.conditions;
     date.innerHTML += item.date["pretty"];
     temp.innerHTML += item.high["celsius"] + ' &#176;	Celsius';
     snow.innerHTML += 'Snow: ' + item.snow_allday["cm"] + ' cm';
     icon.src = item.icon_url;
-    div.appendChild(condition);
     div.appendChild(date);
+    div.appendChild(condition);
     div.appendChild(temp);
-    div.appendChild(snow);
     div.appendChild(icon);
+    div.appendChild(snow);
     output.appendChild(div);
   })
 }

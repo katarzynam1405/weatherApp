@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="src/styles/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -28,29 +29,21 @@
         <div id="accordion">
           <div class="card">
             <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#Weather" aria-expanded="false" aria-controls="Weather">
-                  Weather
-                </button>
-              </h5>
+              <h5 class="mb-0 btn btn-default card-title-custom" data-toggle="collapse" data-target="#Weather" aria-expanded="false" aria-controls="Weather">Weather </h5>
             </div>
             <div id="Weather" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
-                <div class="output"></div>
+                <div class="weather-output"></div>
               </div>
             </div>
           </div>
           <div class="card">
             <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Collapsible Group Item #2
-                </button>
-              </h5>
+              <h5 class="mb-0 btn btn-default card-title-custom" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">News </h5>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
               <div class="card-body">
-
+                <ol class="news-output news-conteiner"></ol>
               </div>
             </div>
           </div>
